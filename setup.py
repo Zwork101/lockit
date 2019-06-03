@@ -16,7 +16,7 @@ URL = 'https://github.com/Zwork101/lockit'
 EMAIL = 'zwork101@gmail.com'
 AUTHOR = 'Nathan Zilora'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = "1.0"
+VERSION = "1.0.1"
 
 # What packages are required for this module to be executed?
 
@@ -46,7 +46,7 @@ except FileNotFoundError:
 # Load the package's __version__.py module as a dictionary.
 about = {}
 if not VERSION:
-    with open(os.path.join(here, NAME, '__version__.py')) as f:
+    with open(os.path.join(here, "lock", '__version__.py')) as f:
         exec(f.read(), about)
 else:
     about['__version__'] = VERSION
