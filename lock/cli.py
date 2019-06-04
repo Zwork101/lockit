@@ -1,7 +1,8 @@
 from argparse import ArgumentParser
+from getpass import getpass
+from os import remove, rename
 from pathlib import Path
 from shutil import unpack_archive
-from os import remove, rename
 
 from lock.cache import Cache
 from lock.encrypt import EncryptedFile
@@ -16,7 +17,7 @@ def encrypt_file(file_path: Path):
     enc_file.transfer_file(real_path)
 
 
-def decrypt_file(file_path: Path, file_type: str=None):
+def decrypt_file(file_path: Path, file_type: str = None):
     typ = cache.pop_type(str(file_path.absolute())[:-4])
     if typ == cache.UNKNOWN and file_type is None:
         print("Unable to find file type. Please specify the type with --type and try again.")
@@ -24,7 +25,7 @@ def decrypt_file(file_path: Path, file_type: str=None):
     if not file_path.exists():
         print("Unable to find file provided.")
         exit(1)
-    password = input("Password: ")
+    password = getpass()
     enc_file = EncryptedFile(str(file_path.absolute()), password)
     file = enc_file.unpack_file()
     if typ == cache.DIRECTORY or (file_type is not None and file_type[0].lower() == "d"):
@@ -41,8 +42,8 @@ parser.add_argument("file", type=Path, help="Target file that will be encrypted 
 parser.add_argument("--mode", help="Specify encryption / decryption (Otherwise checks for .lck file extension)")
 parser.add_argument("--type", help="Specify if it's a file or directory (Not necessary unless told otherwise)")
 
-def main():
 
+def main():
     args = parser.parse_args()
 
     if args.mode and args.mode[0].lower() == "e":

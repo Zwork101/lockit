@@ -1,12 +1,13 @@
-from shutil import make_archive, rmtree
-from pathlib import Path
+from getpass import getpass
 from os import chdir, getcwd
+from pathlib import Path
+from shutil import make_archive, rmtree
 
 
-def get_password():
+def get_password() -> str:
     while True:
-        passw = input("Password: ")
-        conf_passw = input("Confirm Password: ")
+        passw = getpass()
+        conf_passw = getpass("Confirm Password: ")
         if passw != conf_passw:
             print("Passwords do not match.")
         else:
