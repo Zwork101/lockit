@@ -5,8 +5,8 @@ from Crypto.Util.Padding import pad, unpad
 from Crypto.Util.strxor import strxor
 
 
-def wrap(string: bytes, max: int=32):
-    split_string = [string[i:i+max] for i in range(0, len(string), max)]
+def wrap(string: bytes, max: int = 32):
+    split_string = [string[i:i + max] for i in range(0, len(string), max)]
     start_string = split_string.pop(0)
     for string in split_string:
         start_string = strxor(start_string, string)

@@ -1,5 +1,5 @@
-from pathlib import Path
 import json
+from pathlib import Path
 
 from appdirs import user_data_dir
 
@@ -8,13 +8,12 @@ PROJECT_AUTHOR = "lockit"
 
 
 class Cache:
-
     DATA_DIR = user_data_dir(PROJECT_NAME, PROJECT_AUTHOR)
     UNKNOWN = -1
     FILE = 0
     DIRECTORY = 1
 
-    def __init__(self, data_dir: str=DATA_DIR):
+    def __init__(self, data_dir: str = DATA_DIR):
         self.data_dir = Path(data_dir)
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self.file_types = self.data_dir / "file_types.json"
