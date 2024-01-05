@@ -1,2 +1,2 @@
 appdirs==1.4.3
-pycryptodome==3.8.2
+pycryptodome==3.19.1
